@@ -15,3 +15,4 @@ vectorMean = function(x){
 
 
 }
+
