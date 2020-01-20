@@ -8,11 +8,10 @@
 #' @examples The mean of a sample vector [1,1,1,1] = 1. The mean of a vector [1,2,3,4,5] = 3
 #'
 #'
-vectorMean = function(x){
+VectorMean = function(x){
 
-  mean(x)
-
-
+  #returns the mean of the parameter
+  return(mean(x))
 
 }
 
