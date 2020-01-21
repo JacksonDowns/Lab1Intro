@@ -52,14 +52,25 @@ Correlation = function(vectorx, vectory){
 
   numOfDataPoints = length(vectorx)
 
-  devScoreSquared
+  devScoreSquaredx = vector()
+  devScoreSquaredy = vector()
+  crossProducts = vector()
 
   for (i in 1:numOfDataPoints) {
 
-
+    devScoreSquaredx = c(devScoreSquaredx,(vectorx[i]-VectorMean(vectorx))^2)
+    devScoreSquaredy = c(devScoreSquaredy,(vectory[i]-VectorMean(vectory))^2)
+    crossProducts = c(crossProducts,(vectorx[i]-VectorMean(vectorx))*(vectory[i]-VectorMean(vectory)))
 
   }
 
+  sumDevSCoresx = sum(devScoreSquaredx)
+  sumDevScoresy = sum(devScoreSquaredy)
+  sumCrossProduct = sum(crossProducts)
 
+
+  correlation = sumCrossProduct / (sqrt(sumDevSCoresx)*sqrt(sumDevScoresy))
+
+  return(correlation)
 
 }
