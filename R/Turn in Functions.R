@@ -74,16 +74,19 @@ CorrelationMatrix = function(matrix){
 
   for (i in 1:dataSets) {
 
-    for(j in 1:numDataPoints)
+    for(j in 1:dataSets)
     {
 
-
+      correlationVecVAlues = c(correlationVecVAlues,Correlation(matrix[,i],matrix[,j]))
 
     }
 
+
+
   }
 
-
+  #Returns the covariance values as a matrix
+  return(matrix(correlationVecVAlues,dataSets,dataSets,TRUE))
 
 
 }
