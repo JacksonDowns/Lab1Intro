@@ -32,22 +32,19 @@ CovarianceMatrix = function(matrix){
   #Number of data points in each vector
   numDataPoints = nrow(matrix)
 
-  #Covariance matrix that will be populated with values and returned
-  covarMatrix = matrix(nrow=dataSets,ncol=dataSets,TRUE)
-
   for (i in 1:dataSets) {
 
     for (j in i+1:dataSets) {
 
-      Covariance(matrix[,i],matrix[,j])
-
+      covarVector = append(Covariance(matrix[,i],matrix[,j]))
 
 
     }
 
   }
 
-
+  #Covariance matrix that will be populated with values and returned
+  covarMatrix = matrix(data = covarvector,nrow=dataSets,ncol=dataSets,TRUE)
 
 
 }
