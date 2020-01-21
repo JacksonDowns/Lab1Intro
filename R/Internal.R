@@ -36,3 +36,30 @@ Covariance = function(vectorx, vectory){
   return(covar)
 
 }
+
+
+
+#' Correlation
+#'
+#' @param vectorx 1st vector parameter
+#' @param vectory 2nd vector parameter
+#'
+#' @return returns the correlation of the two vectors
+#'
+#'
+#'
+Correlation = function(vectorx, vectory){
+
+  numOfDataPoints = length(vectorx)
+
+  devScoreSquared
+
+  for (i in 1:numOfDataPoints) {
+
+
+
+  }
+
+
+
+}
