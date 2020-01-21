@@ -18,7 +18,7 @@ VectorMean = function(x){
 
 #'Covariance matrix function
 #'
-#' @param matrix matrix of vectors, with the number of vectors represented by rows, and the amount of data represented as columns
+#' @param matrix matrix of vectors, with the number of vectors represented by columns, and the amount of data represented as rows
 #'
 #' @return a matrix of the covariances of all the vectors
 #' @export
@@ -26,7 +26,26 @@ VectorMean = function(x){
 #' @examples
 CovarianceMatrix = function(matrix){
 
+  #Number of data sets
+  dataSets =  ncol(matrix)
 
+  #Number of data points in each vector
+  numDataPoints = nrow(matrix)
+
+  #Covariance matrix that will be populated with values and returned
+  covarMatrix = matrix(nrow=dataSets,ncol=dataSets,TRUE)
+
+  for (i in 1:dataSets) {
+
+    for (j in i+1:dataSets) {
+
+      Covariance(matrix[,i],matrix[,j])
+
+
+
+    }
+
+  }
 
 
 
