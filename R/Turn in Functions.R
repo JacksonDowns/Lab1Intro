@@ -16,14 +16,14 @@ VectorMean = function(x){
 }
 
 
-#'Covariance matrix function
+#'Covariance Matrix Function
 #'
 #' @param matrix matrix of vectors, with the number of vectors represented by columns, and the amount of data represented as rows
 #'
 #' @return a matrix of the covariances of all the vectors
 #' @export
 #'
-#' @examples
+#' @examples a matrix 4x3 matrix will return a 4x4 zero matrix
 CovarianceMatrix = function(matrix){
 
   #Number of data sets
@@ -32,8 +32,10 @@ CovarianceMatrix = function(matrix){
   #Number of data points in each vector
   numDataPoints = nrow(matrix)
 
+  #Vector of the Covariance values
   covarianceVector = vector()
 
+  ##For loops to calculate the covariances of the data sets
   for (i in 1:dataSets) {
 
     for(j in 1:dataSets){
@@ -44,9 +46,20 @@ CovarianceMatrix = function(matrix){
 
   }
 
-
+  #Returns the covariance values as a matrix
   return(matrix(covarianceVector,dataSets,dataSets,TRUE))
 
 }
 
 
+#' Correlation Matrix Function
+#'
+#' @param matrix matrix of values used to calculate correlation
+#'
+#' @return a matrix of correlation values for the data
+#' @export
+#'
+#' @examples
+CorrelationMatrix = function(matrix){
+
+}
