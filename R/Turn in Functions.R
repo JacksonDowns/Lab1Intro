@@ -40,13 +40,12 @@ CovarianceMatrix = function(matrix){
 
       covarianceVector = c(covarianceVector,Covariance(matrix[,i],matrix[,j]))
 
-
     }
-
 
   }
 
-  covarianceVector
+
+  return(matrix(covarianceVector,dataSets,dataSets,TRUE))
 
 }
 
