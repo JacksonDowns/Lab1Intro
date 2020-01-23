@@ -30,6 +30,8 @@ CovarianceMatrix = function(matrix){
   #Number of data sets
   dataSets =  ncol(matrix)
 
+  variableNames = colnames(matrix)
+
   #Number of data points in each vector
   numDataPoints = nrow(matrix)
 
@@ -48,7 +50,7 @@ CovarianceMatrix = function(matrix){
   }
 
   #Returns the covariance values as a matrix
-  return(matrix(covarianceVector,dataSets,dataSets,TRUE))
+  return(matrix(covarianceVector,dataSets,dataSets,TRUE,list(variableNames,variableNames)))
 
 }
 
@@ -65,6 +67,8 @@ CorrelationMatrix = function(matrix){
 
   #Number of data sets
   dataSets =  ncol(matrix)
+
+  variableNames = colnames(matrix)
 
   #Number of data points in each vector
   numDataPoints = nrow(matrix)
@@ -87,7 +91,6 @@ CorrelationMatrix = function(matrix){
   }
 
   #Returns the covariance values as a matrix
-  return(matrix(correlationVecVAlues,dataSets,dataSets,TRUE))
-
+  return(matrix(correlationVecVAlues,dataSets,dataSets,TRUE,list(variableNames,variableNames)))
 
 }

@@ -52,7 +52,7 @@ $$R =D^{\frac{-1}{2}}SD^{\frac{-1}{2}}$$
 
 #Examples
 
-```{r,echo = false}
+```{r,echo = FALSE}
 
 #Load in data
 specimen = vector()
@@ -89,6 +89,41 @@ colnames(table) = c("Specimen","Density","Machine Direction", "Cross Direction")
 
 ```
 
+##Sample Means
+
+Here we have a dataset for paper quality. 
+```{r,echo=FALSE}
+
+head(table)
+
+```
+
+
+Looping through the columns gives us these means for each variable, respectively.
+```{r}
+
+  dataSetMeans = vector()
+
+  for (i in 1:ncol(table)) {
+    
+    dataSetMeans = c(dataSetMeans,VectorMean(table[,i]))
+    
+  }
+
+  dataSetMeans
+
+```
+
+##Covariance
+
+To calculate the covariance of each variable, simply take the table and use it as a parameter in the CovarianceMatrix function
+
+```{r}
+
+CovarianceMatrix(table)
+
+```
+##Correlation
 
 
 
