@@ -10,8 +10,9 @@
 #'
 VectorMean = function(x){
 
-  #returns the mean of the parameter
-  return(mean(x))
+  #Sums all values in x and divides by the length of x
+  return(sum(x) / length(x))
+
 
 }
 

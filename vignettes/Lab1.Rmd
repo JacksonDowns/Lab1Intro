@@ -1,0 +1,99 @@
+---
+title: "Lab1"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab1}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(Lab1Intro)
+```
+
+###Package Making Website and Github Repository
+
+The package making website is http://r-pkgs.had.co.nz/vignettes.html while the link to my own personal git repository for this package is https://github.com/JacksonDowns/Lab1Intro.git
+
+##Equations used
+
+  In this package, we were asked to code several different equations listed within the book. The first equation asked for was the calculation of the vector mean. This is given in the book as equation 1-1. The equation for calculating the sample mean is $\bar{x_k} = \frac{1}{n} \sum_{j=1}^{n}{x_{jk}}$ for k = 1,2,...,p.
+
+  The next equation, equation 1-4, is the equation used to calculate covariance. we were not allowed to use the cov() function, and had to build this ourselves.  The equation for calculating the covariance of a group of variable is
+$s_{ik} = \frac{1}{n} \sum_{j=1}^{n} (x_{ji}-\bar{x_i})(x_{jk}-\bar{x_k})$ where i and k represent different variables.
+
+  The final equation we were asked to program was equation 1-5. The equation is used to calculate the correlation coefficient of a group of vectors. Oncce again, we were not allowed to use the cor() function, and were required to calculate the correlation manually. The equation used to calculate correlation is given as:
+
+$$r_{ik} = \frac{s_{ik}}{\sqrt{s_{ii}}\sqrt{s_{kk}}} = \frac{\sum^{n}_{j=1}(x_{ji}-\bar{x_i})(x_{jk}-\bar{x_k})}{\sqrt{\sum^{n}_{j=1}(x_{ji}-\bar{x_i})^2}\sqrt{\sum^{n}_{j=1}(x_{jk}-\bar{x_k})^2}}$$
+For multiple variables, the correlations can be put into a correlation matrix to make patterns easy to recognize. This is using equation 3-29, which is $R =D^{\frac{-1}{2}}SD^{\frac{-1}{2}}$, where R is the correlation matrix, D is the sample standard deviation matrix, and S is the variance covariance matrix. This equation can be derived from using equation 3-28, where:
+
+
+$$\mathbf{D^{\frac{1}{2}}_{pxp}} = \left[\begin{array} {ccc} \sqrt{s_{11}} & 0 & ... & 0 \\ 0 & \sqrt{s_{22}} & ... & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & ... & \sqrt{s_{pp}} \end{array}\right]$$
+Then
+
+$$\mathbf{D^{\frac{1}{2}}_{pxp}} = \left[\begin{array} {ccc} \frac{1}{\sqrt{s_{11}}} & 0 & ... & 0 \\ 0 & \frac{1}{\sqrt{s_{22}}} & ... & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & ... & \frac{1}{\sqrt{s_{pp}}} \end{array}\right]$$
+Since
+
+$$\mathbf{S} = \left[\begin{array} {ccc} s_{11} & s_{12} & ... & s_{1p} \\ \vdots & \vdots & \ddots & \vdots \\ s_{1p} & s_{2p} & ... & s_{pp} \end{array}\right]$$
+
+and
+
+$$\mathbf{R} = \left[\begin{array} {ccc} \frac{s_{11}}{\sqrt{s_{11}\sqrt{s_{11}}}} & \frac{s_{12}}{\sqrt{s_{11}\sqrt{s_{22}}}} & ... & \frac{s_{1p}}{\sqrt{s_{11}\sqrt{s_{pp}}}} \\ \vdots & \vdots & \ddots & \vdots \\ \frac{s_{1p}}{\sqrt{s_{11}\sqrt{s_{pp}}}} & \frac{s_{2p}}{\sqrt{s_{22}\sqrt{s_{pp}}}} & ... & s_{pp}  \end{array}\right] = \left[\begin{array} {ccc} 1 & r_{12} & ... & r_{1p} \\ \vdots & \vdots & \ddots & \vdots \\ r_{1p} & r_{2p} & ... & 1 \end{array}\right]$$
+Which gives us
+
+$$R =D^{\frac{-1}{2}}SD^{\frac{-1}{2}}$$
+
+#Examples
+
+```{r,echo = false}
+
+#Load in data
+specimen = vector()
+
+for (i in 1:41) {
+  
+  specimen = c(specimen,i)
+  
+}
+
+density = c(0.801,0.824,0.841,0.816,0.840,0.842,0.820,0.802,0.828,0.819,
+            0.826,0.802,0.810,0.802,0.832,0.796,0.759,0.770,0.759,0.722,
+            0.806,0.803,0.845,0.822,0.971,0.816,0.836,0.815,0.822,0.822,
+            0.843,0.824,0.788,0.782,0.795,0.805,0.836,0.788,0.772,0.776,
+            0.758)
+
+machDir = c(121.41,127.70,129.20,131.80,135.10,131.50,126.70,115.10,130.80,124.60,
+            118.31,114.20,120.30,115.70,117.51,109.81,109.10,115.10,118.31,112.60,
+            116.20,118.00,131.00,125.70,126.10,125.80,125.50,127.80,130.50,127.90,
+            123.90,124.10,120.80,107.40,120.70,121.91,122.31,110.60,103.51,110.71,
+            113.80)
+
+crossDir = c(70.42,72.47,78.20,74.89,71.21,78.39,69.02,73.10,79.28,76.48,
+             70.25,72.88,68.23,68.12,71.62,53.10,50.85,51.68,50.60,53.51,
+             56.53,70.70,74.35,68.29,72.10,70.64,76.33,76.75,80.33,75.68,
+             78.54,71.91,68.22,54.22,70.41,73.68,74.93,53.52,48.93,53.67,
+             52.42)
+
+
+
+table = matrix(c(specimen,density,machDir,crossDir),41,4,TRUE)
+
+colnames(table) = c("Specimen","Density","Machine Direction", "Cross Direction")
+
+```
+
+
+
+
+
+
+
+
+
