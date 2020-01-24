@@ -125,11 +125,14 @@ CorrelationMatrix(table)
 
 ###Assessments
 
-The assessments for this course
+The assessments for this course depends on whether the student is take 4793 or 5793. For me personally. I am taking 4793, which means my assessment is as follows.
 
-
-
-
+Clicker quiz each class and lab (10%)
+4 assignments (20%)
+Laboratories (10%)
+2 exams (10% each, Total 20%)
+2 Projects (10%)
+1 final (30%)
 
 
 
