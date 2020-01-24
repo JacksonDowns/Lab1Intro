@@ -86,8 +86,6 @@ CorrelationMatrix = function(matrix){
 
     }
 
-
-
   }
 
   #Returns the covariance values as a matrix
